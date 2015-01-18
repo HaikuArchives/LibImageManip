@@ -45,7 +45,7 @@ BBitmapAccessor::~BBitmapAccessor()
 {
 	if (mUpdateInvoker && mLastAreaChanged)
 	{
-		BMessage msg(mUpdateInvoker->Message());
+		BMessage msg(*mUpdateInvoker->Message());
 		msg.AddRect("rect", mLastArea);
 		mUpdateInvoker->Invoke(&msg);
 	}
@@ -78,7 +78,7 @@ BBitmapAccessor::CreateBitmap(
 
 	if (mCreateInvoker)
 	{
-		BMessage msg(mCreateInvoker->Message());
+		BMessage msg(*mCreateInvoker->Message());
 		msg.AddPointer("bitmap", mBitmap);
 		mCreateInvoker->Invoke(&msg);
 	}
@@ -108,7 +108,7 @@ BBitmapAccessor::AccessBits(
 {
 	if (mUpdateInvoker && mLastAreaChanged && mLastArea.IsValid())
 	{
-		BMessage msg(mUpdateInvoker->Message());
+		BMessage msg(*mUpdateInvoker->Message());
 		msg.AddRect("rect", mLastArea);
 		mUpdateInvoker->Invoke(&msg);
 	}
