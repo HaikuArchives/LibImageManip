@@ -35,7 +35,7 @@
 static int debug = 0;
 
 // Multiple search paths are separated by colons (':')
-static const char *defaultAddonPath = "/boot/home/config/add-ons/ImageManip";
+static const char *defaultAddonPath = "/boot/system/add-ons/ImageManip";
 
 // Default string for 'no category'
 static const char *noCategory = "";
@@ -124,7 +124,7 @@ Image_Version(
 			IMAGE_LIB_CUR_VERSION % 10,
 			vDate);
 	}
-	
+
 	if (curVersion)
 		*curVersion = IMAGE_LIB_CUR_VERSION;
 	if (minVersion)
@@ -139,7 +139,7 @@ static AddonInfo *
 LoadAddonImage(image_addon_id imageAddon)
 {
 	AddonInfo *info = (AddonInfo *) imageAddon;  // dumb cast
-	
+
 	StAcquire lock(sSem);
 
 	// Already loaded?
@@ -364,7 +364,7 @@ status_t
 Image_Shutdown()
 {
 	if (sSem <= 0)
-		return B_NO_INIT;	
+		return B_NO_INIT;
 
 	acquire_sem(sSem);
 
@@ -466,7 +466,7 @@ Image_GetManipulators(
 	while (info)
 	{
 		image_addon_id imageAddon = (image_addon_id) info;
-	
+
 		// Ask the add-on if it supports it
 		if (info->canManipulate &&
 			LoadAddonImage(imageAddon) &&
